@@ -4,6 +4,16 @@ Massively parallel serverless computing using AWS Lambda.
 
 ## Installation
 
+### Python 3.8, `conda`, `npm`
+
+Python 3.8 is preferred, which can be easily via `conda`:
+- https://docs.conda.io/projects/conda/en/latest/user-guide/install/)
+
+`npm` can then be installed as follows
+```bash
+conda install -c conda-forge nodejs
+```
+
 ### Lambda Container Stack
 
 ```bash
