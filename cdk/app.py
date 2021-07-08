@@ -15,6 +15,7 @@ from stack.stack import LambdaMapStack
 if __name__ == '__main__':
     app = cdk.App()
 
+    folder = app.node.try_get_context("folder")
     stack_name = app.node.try_get_context("stack_name")
     function_name = app.node.try_get_context("function_name")
     memory_size = app.node.try_get_context("memory_size")
@@ -30,7 +31,8 @@ if __name__ == '__main__':
         timeout_secs = 900
 
     kwargs = dict(stack_name=stack_name, function_name=function_name,
-                  memory_size=memory_size, timeout_secs=timeout_secs)
+                  memory_size=memory_size, timeout_secs=timeout_secs,
+                  folder=folder)
 
     LambdaMapStack(app, stack_name, **kwargs)
 
