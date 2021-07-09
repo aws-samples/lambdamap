@@ -22,7 +22,7 @@ setuptools.setup(
         "aws-cdk.core==1.97.0",
     ],
 
-    python_requires=">=3.6",
+    python_requires=">=3.8",
 
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -32,9 +32,6 @@ setuptools.setup(
         "License :: OSI Approved :: Apache Software License",
 
         "Programming Language :: JavaScript",
-        "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
 
         "Topic :: Software Development :: Code Generators",
