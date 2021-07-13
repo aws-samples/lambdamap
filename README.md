@@ -14,6 +14,13 @@ Python 3.8 is preferred, which can be easily via `conda`:
 conda install -c conda-forge nodejs
 ```
 
+### Python Package
+
+```bash
+# Install the `lambdamap` python package
+pip3 install -e .
+```
+
 ### Lambda Container Stack
 
 ```bash
@@ -31,13 +38,6 @@ cdk deploy
 
 # Generate the CFN template
 cdk synth
-```
-
-### Python Package
-
-```bash
-# Install the `lambdamap` python package
-pip3 install -e .
 ```
 
 ### Dockerfile
