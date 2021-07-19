@@ -8,12 +8,14 @@ $ cdk deploy --context \
     timeout_secs=900
 
 """
-from aws_cdk import core as cdk
+import os
+
+from aws_cdk import core
 from stack.stack import LambdaMapStack
 
 
 if __name__ == '__main__':
-    app = cdk.App()
+    app = core.App()
 
     folder = app.node.try_get_context("folder")
     stack_name = app.node.try_get_context("stack_name")
@@ -34,6 +36,8 @@ if __name__ == '__main__':
                   memory_size=memory_size, timeout_secs=timeout_secs,
                   folder=folder)
 
-    LambdaMapStack(app, stack_name, **kwargs)
+    LambdaMapStack(app, stack_name,
+        env=core.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'),
+                             region=os.getenv('CDK_DEFAULT_REGION')), **kwargs)
 
     app.synth()

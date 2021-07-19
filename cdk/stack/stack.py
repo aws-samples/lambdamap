@@ -1,4 +1,5 @@
 import os
+import sys
 
 from aws_cdk import core, aws_lambda, aws_ecr
 from aws_cdk import core as cdk
@@ -24,8 +25,11 @@ class LambdaMapStack(cdk.Stack):
         """
         super().__init__(scope, construct_id)
 
-        folder = \
-            kwargs.get("folder", os.path.dirname(os.path.realpath(__file__)))
+        folder = kwargs.get("folder", None)
+
+        if folder is None:
+            folder = os.path.dirname(os.path.realpath(__file__))
+
         function_name = kwargs.get("function_name", "LambdaMapFunction")
         memory_size = kwargs.get("memory_size", 512) 
         timeout_secs = kwargs.get("timeout_secs", 900) 
