@@ -1,6 +1,6 @@
-aws-cdk.core>=1.114.0
-aws-cdk.aws_lambda>=1.114.0
-aws-cdk.aws_ecr>=1.114.0
-aws-cdk.aws-lambda-python>=1.114.0
+aws-cdk.core==1.114.0
+aws-cdk.aws_lambda==1.114.0
+aws-cdk.aws_ecr==1.114.0
+aws-cdk.aws-lambda-python==1.114.0
 botocore
 boto3
