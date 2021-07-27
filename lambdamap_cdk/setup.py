@@ -25,18 +25,7 @@ setuptools.setup(
     python_requires=">=3.8",
 
     classifiers=[
-        "Development Status :: 4 - Beta",
-
-        "Intended Audience :: Developers",
-
-        "License :: OSI Approved :: Apache Software License",
-
         "Programming Language :: JavaScript",
         "Programming Language :: Python :: 3.8",
-
-        "Topic :: Software Development :: Code Generators",
-        "Topic :: Utilities",
-
-        "Typing :: Typed",
-    ],
+    ]
 )
