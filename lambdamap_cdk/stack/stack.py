@@ -45,15 +45,16 @@ class LambdaMapStack(cdk.Stack):
                       .from_asset_image(directory=folder,
                                         build_args=build_args)
 
-        lambda_function = aws_lambda.Function(self, 
-          id            = function_name,
-          description   = "LambdaMap",
-          code          = ecr_image,
-          handler       = aws_lambda.Handler.FROM_IMAGE,
-          runtime       = aws_lambda.Runtime.FROM_IMAGE,
-          function_name = function_name,
-          memory_size   = memory_size,
-          timeout       = core.Duration.seconds(timeout_secs),
+        lambda_function = aws_lambda.Function(
+            self, 
+            id=function_name,
+            description="LambdaMap",
+            code=ecr_image,
+            handler=aws_lambda.Handler.FROM_IMAGE,
+            runtime=aws_lambda.Runtime.FROM_IMAGE,
+            function_name=function_name,
+            memory_size=memory_size,
+            timeout=core.Duration.seconds(timeout_secs)
         )
 
         return
