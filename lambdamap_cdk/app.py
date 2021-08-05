@@ -29,12 +29,12 @@ if __name__ == '__main__':
     if function_name is None:
         function_name = "LambdaMapFunction"
     if memory_size is None:
-        memory_size = 512
+        memory_size = 256
     if timeout_secs is None:
         timeout_secs = 900
 
     kwargs = dict(stack_name=stack_name, function_name=function_name,
-                  memory_size=memory_size, timeout_secs=timeout_secs,
+                  memory_size=int(memory_size), timeout_secs=int(timeout_secs),
                   folder=folder, extra_cmds=extra_cmds)
 
     LambdaMapStack(app, stack_name,

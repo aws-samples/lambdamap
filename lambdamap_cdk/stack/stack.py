@@ -16,7 +16,7 @@ class LambdaMapStack(cdk.Stack):
             (i.e. lambda.py) and Dockerfile.
         function_name : str, default="LambdaMapFunction"
             Name of the primary lambdamap function.
-        memory_size : int, default=512
+        memory_size : int, default=256
             Amount of memory allocated (in MB) to the lambdamap function.
         timeout_secs : int, default=900
             Max. amount of time (in seconds) the lambdamap function will run
@@ -53,7 +53,7 @@ class LambdaMapStack(cdk.Stack):
             handler=aws_lambda.Handler.FROM_IMAGE,
             runtime=aws_lambda.Runtime.FROM_IMAGE,
             function_name=function_name,
-            memory_size=memory_size,
+            memory_size=int(memory_size),
             timeout=core.Duration.seconds(timeout_secs)
         )
 
