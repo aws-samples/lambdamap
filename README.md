@@ -27,7 +27,7 @@ pip3 install -e .
 # Install the AWS CDK Toolkit and CLI
 npm i -g aws-cdk
 
-cd ./cdk
+cd ./lambdamap_cdk
 
 # Install the AWS CDK Python 3.x dependencies
 pip3 install -r requirements.txt
