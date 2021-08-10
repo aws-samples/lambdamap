@@ -31,7 +31,7 @@ class LambdaMapStack(cdk.Stack):
             folder = os.path.dirname(os.path.realpath(__file__))
 
         function_name = kwargs.get("function_name", "LambdaMapFunction")
-        memory_size = kwargs.get("memory_size", 512) 
+        memory_size = kwargs.get("memory_size", 256) 
         timeout_secs = kwargs.get("timeout_secs", 900) 
         extra_cmds = kwargs.get("extra_cmds", None)
 
