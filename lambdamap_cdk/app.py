@@ -17,6 +17,8 @@ from stack.stack import LambdaMapStack
 if __name__ == '__main__':
     app = core.App()
 
+    core.Tags.of(app).add("Project", "lambdamap")
+
     folder = app.node.try_get_context("folder")
     stack_name = app.node.try_get_context("stack_name")
     function_name = app.node.try_get_context("function_name")
