@@ -39,8 +39,5 @@ if __name__ == '__main__':
                   memory_size=int(memory_size), timeout_secs=int(timeout_secs),
                   folder=folder, extra_cmds=extra_cmds)
 
-    LambdaMapStack(app, stack_name,
-        env=core.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'),
-                             region=os.getenv('CDK_DEFAULT_REGION')), **kwargs)
-
+    LambdaMapStack(app, stack_name, **kwargs)
     app.synth()
