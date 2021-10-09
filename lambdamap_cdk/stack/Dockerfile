@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.8
+FROM public.ecr.aws/lambda/python:3.9
 
 # You can specify custom Dockerfile commands to run at build time e.g:
 #
@@ -16,6 +16,6 @@ RUN /bin/bash -c "${EXTRA_CMDS}"
 RUN pip install awslambdaric cloudpickle==1.6.0
 RUN touch ${LAMBDA_TASK_ROOT}/logs.log && chmod a+rwx ${LAMBDA_TASK_ROOT}/logs.log
 
-COPY lambda.py ${LAMBDA_TASK_ROOT}
+COPY index.py ${LAMBDA_TASK_ROOT}
 
-CMD ["lambda.handler"]
+CMD ["index.handler"]
