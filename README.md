@@ -1,12 +1,13 @@
 # lambdamap
 
-Massively parallel serverless computing using AWS Lambda.
+Massively parallel on-demand serverless computing using AWS Lambda.
 
 ## Installation
 
-### Python 3.8, `conda`, `npm`
+### Python 3.9, `conda`, `npm`
 
-Python 3.8 is preferred, which can be easily via [`conda`](https://docs.conda.io/projects/conda/en/latest/user-guide/install/).
+Python 3.9 is preferred, which can be easily installed via `conda`:
+- https://docs.conda.io/projects/conda/en/latest/user-guide/install/
 
 You can install these and npm with the below:
 ```bash
@@ -26,41 +27,23 @@ pip3 install -e .
 ```bash
 # Install the AWS CDK Toolkit and CLI
 npm i -g aws-cdk
+```
 
-cd ./lambdamap_cdk
-
-# Install the AWS CDK Python 3.x dependencies
-pip3 install -r requirements.txt
-
+Deploy the LambdaMap stack, you can configure the stack using the following
+`make` variables:
+- `STACK_NAME` (default: `STACK_NAME=LambdaMapStack`)
+    - name of the lambdamap cloudformation stack
+- `FUNCTION_NAME` (default: `FUNCTION_NAME=LambdaMapFunction`)
+    - name of the AWS Lambda function that will execute your python function
+- `EXTRA_CMDS` (default: `EXTRA_CMDS=''`)
+    - e.g: `EXTRA_CMDS='pip install pandas'` 
+    - additional commands to execute in a single `RUN` instruction of
+      the `Dockerfile`, such as `pip install` for installing additional
+      python packages in the lambda container.
+```bash
 # Deploy the LambdaMap stack
-cdk bootstrap
-cdk deploy
-
-# Generate the CFN template
-cdk synth
-```
-
-### Dockerfile
-
-You can specify additional system and Python packages to be used by the Lambda container in `./cdk/stack/Dockerfile`.
-```
-lambdamap
-├── cdk/
-│   ├── app.py
-│   ├── cdk.json
-│   ├── requirements.txt
-│   ├── setup.py
-│   ├── source.bat
-│   └── stack/
-│       ├── Dockerfile <--- modify to include custom system and Python packages
-│       ├── __init__.py
-│       ├── lambda.py
-│       └── stack.py
-├── lambdamap/
-│   ├── core.py
-│   └── __init__.py
-├── README.md
-└── setup.py
+make bootstrap
+make deploy EXTRA_CMDS='pip install pandas'
 ```
 
 ## Example Usage

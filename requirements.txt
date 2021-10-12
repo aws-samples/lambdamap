@@ -4,3 +4,9 @@ aws-cdk.aws_ecr==1.114.0
 aws-cdk.aws-lambda-python==1.114.0
 botocore
 boto3
+pytest
+cloudpickle==1.6.0
+tqdm
+pandas
+black
+awscli
