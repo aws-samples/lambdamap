@@ -13,7 +13,7 @@ RUN yum update -y \
         gcc-c++ make openssl-devel zlib-devel readline-devel git
 
 RUN /bin/bash -c "${EXTRA_CMDS}"
-RUN pip install awslambdaric cloudpickle==1.6.0
+RUN pip install awslambdaric cloudpickle==1.6.0 numpy pandas
 RUN touch ${LAMBDA_TASK_ROOT}/logs.log && chmod a+rwx ${LAMBDA_TASK_ROOT}/logs.log
 
 COPY index.py ${LAMBDA_TASK_ROOT}

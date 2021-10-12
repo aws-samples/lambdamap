@@ -6,12 +6,13 @@ Massively parallel on-demand serverless computing using AWS Lambda.
 
 ### Python 3.9, `conda`, `npm`
 
-Python 3.9 is preferred, which can be easily via `conda`:
-- https://docs.conda.io/projects/conda/en/latest/user-guide/install/)
+Python 3.9 is preferred, which can be easily installed via `conda`:
+- https://docs.conda.io/projects/conda/en/latest/user-guide/install/
 
-`npm` can then be installed as follows
+You can install these and npm with the below:
 ```bash
-conda install -c conda-forge nodejs
+conda create -n <envname> -c conda-forge nodejs python=3.8
+conda activate <envname>
 ```
 
 ### Python Package
