@@ -41,4 +41,5 @@ deploy: lambdamap_cdk/app.py .venv
 	cdk deploy -a 'python3 -B $<' \
 		-c stack_name=${STACK_NAME} \
 		-c function_name=${FUNCTION_NAME} \
-		-c extra_cmds='${EXTRA_CMDS}'
+		-c extra_cmds='${EXTRA_CMDS}' \
+		--require-approval never
