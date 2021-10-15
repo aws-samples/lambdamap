@@ -17,14 +17,13 @@ from stack.stack import LambdaMapStack
 if __name__ == '__main__':
     app = core.App()
 
-    core.Tags.of(app).add("Project", "lambdamap")
-
     folder = app.node.try_get_context("folder")
     stack_name = app.node.try_get_context("stack_name")
     function_name = app.node.try_get_context("function_name")
     memory_size = app.node.try_get_context("memory_size")
     timeout_secs = app.node.try_get_context("timeout_secs")
     extra_cmds = app.node.try_get_context("extra_cmds")
+    project_tag = app.node.try_get_context("project_tag")
 
     if stack_name is None:
         stack_name = "LambdaMapStack"
@@ -34,6 +33,10 @@ if __name__ == '__main__':
         memory_size = 256
     if timeout_secs is None:
         timeout_secs = 900
+    if project_tag is None:
+        project_tag = "lambdamap"
+
+    core.Tags.of(app).add("Project", project_tag)
 
     kwargs = dict(stack_name=stack_name, function_name=function_name,
                   memory_size=int(memory_size), timeout_secs=int(timeout_secs),
