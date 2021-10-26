@@ -40,10 +40,12 @@ Deploy the LambdaMap stack, you can configure the stack using the following
     - additional commands to execute in a single `RUN` instruction of
       the `Dockerfile`, such as `pip install` for installing additional
       python packages in the lambda container.
+- `CDK_TAGS` (default: `CDK_TAGS='--tags Project=lambdamap'`)
+    - custom resource tags
 ```bash
 # Deploy the LambdaMap stack
 make bootstrap
-make deploy EXTRA_CMDS='pip install pandas'
+make deploy EXTRA_CMDS='pip install pandas' CDK_TAGS='--tags Project=lambdamap'
 ```
 
 ## Example Usage

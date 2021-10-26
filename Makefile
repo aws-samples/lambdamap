@@ -4,7 +4,7 @@ ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 STACK_NAME:=LambdaMapStack
 FUNCTION_NAME:=LambdaMapFunction
-PROJECT_TAG:=lambdamap
+CDK_TAGS:=--tags Project=lambdamap
 
 # Use `EXTRA_CMDS` to run custom commands with the `RUN` instruction in
 # the lambda container Dockerfile. This is useful for installing custom
@@ -43,5 +43,5 @@ deploy: lambdamap_cdk/app.py .venv
 		-c stack_name=${STACK_NAME} \
 		-c function_name=${FUNCTION_NAME} \
 		-c extra_cmds='${EXTRA_CMDS}' \
-		-c project_tag=${PROJECT_TAG} \
-		--require-approval never
+		--require-approval never \
+		${CDK_TAGS}
