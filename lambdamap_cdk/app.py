@@ -32,8 +32,6 @@ if __name__ == '__main__':
         memory_size = 256
     if timeout_secs is None:
         timeout_secs = 900
-    if project_tag is None:
-        project_tag = "lambdamap"
 
     kwargs = dict(stack_name=stack_name, function_name=function_name,
                   memory_size=int(memory_size), timeout_secs=int(timeout_secs),
