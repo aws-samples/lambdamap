@@ -1,6 +1,6 @@
 #
 # USAGE:
-# 	make deploy MEMORY=512 TIMEOUT=30 EXTRA_CMDS='pip install pandas'
+# 	make deploy MEMORY=512 TIMEOUT=30 EXTRA_CMDS="'pip install pandas'"
 #
 export SHELL
 SHELL:=/bin/bash
