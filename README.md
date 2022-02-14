@@ -43,17 +43,19 @@ Deploy the LambdaMap stack, you can configure the stack using the following
 - `TIMEOUT` (default: `TIMEOUT=900`)
     - timeout, in seconds, to assign to the Lambda function
 - `EXTRA_CMDS` (default: `EXTRA_CMDS=''`)
-    - e.g: `EXTRA_CMDS='pip install pandas'` 
+    - e.g: `EXTRA_CMDS="'pip install pandas'"` 
     - additional commands to execute in a single `RUN` instruction of
       the `Dockerfile`, such as `pip install` for installing additional
       python packages in the Lambda container.
+    - note that use of the double and single quotes (`"'...'"`)
 - `CDK_TAGS` (default: `CDK_TAGS='--tags Project=lambdamap'`)
+    - e.g: `CDK_TAGS='--tags Project=lambdamap --tags Department=Dev'`
     - custom resource tags
 
 ```bash
 # Deploy the LambdaMap stack
 make bootstrap
-make deploy EXTRA_CMDS='pip install pandas' CDK_TAGS='--tags Project=lambdamap'
+make deploy EXTRA_CMDS="'pip install pandas'" CDK_TAGS='--tags Project=lambdamap'
 ```
 
 ## Example Usage
