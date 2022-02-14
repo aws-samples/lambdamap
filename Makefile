@@ -1,6 +1,7 @@
 #
 # USAGE:
-# 	make deploy MEMORY=512 TIMEOUT=30 EXTRA_CMDS="'pip install pandas'"
+# 	make deploy MEMORY=512 TIMEOUT=30 EXTRA_CMDS="'pip install pandas'" \
+#		CDK_TAGS='--tags Project=lambdamap --tags Department=Dev'
 #
 export SHELL
 SHELL:=/bin/bash
