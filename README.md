@@ -11,7 +11,7 @@ Python 3.9 is preferred, which can be easily installed via `conda`:
 
 You can install these and npm with the below:
 ```bash
-conda create -n <envname> -c conda-forge nodejs python=3.8
+conda create -n <envname> -c conda-forge nodejs python=3.9
 conda activate <envname>
 ```
 
@@ -20,6 +20,9 @@ conda activate <envname>
 ```bash
 # Install the `lambdamap` python package
 pip3 install -e .
+
+# (optional) install ipywidgets to visualise the LambdaMap progress bars in Jupyter notebooks
+pip3 install ipywidgets
 ```
 
 ### Lambda Container Stack
@@ -35,13 +38,18 @@ Deploy the LambdaMap stack, you can configure the stack using the following
     - name of the lambdamap cloudformation stack
 - `FUNCTION_NAME` (default: `FUNCTION_NAME=LambdaMapFunction`)
     - name of the AWS Lambda function that will execute your python function
+- `MEMORY` (default: `MEMORY=256`)
+    - memory, in MB, to assign to the Lambda function
+- `TIMEOUT` (default: `TIMEOUT=900`)
+    - timeout, in seconds, to assign to the Lambda function
 - `EXTRA_CMDS` (default: `EXTRA_CMDS=''`)
     - e.g: `EXTRA_CMDS='pip install pandas'` 
     - additional commands to execute in a single `RUN` instruction of
       the `Dockerfile`, such as `pip install` for installing additional
-      python packages in the lambda container.
+      python packages in the Lambda container.
 - `CDK_TAGS` (default: `CDK_TAGS='--tags Project=lambdamap'`)
     - custom resource tags
+
 ```bash
 # Deploy the LambdaMap stack
 make bootstrap
@@ -69,11 +77,11 @@ def my_power(x, **kwargs):
 
 # Instantiate the Lambda executor
 executor = LambdaExecutor(
-    max_workers=1000,
+    max_workers=100,
     lambda_arn="LambdaMapFunction")
 
 # Generate the function payloads
-payloads = [{"args": (i,), "kwargs": {"exponent": 2}} for i in range(1000)]
+payloads = [{"args": (i,), "kwargs": {"exponent": 2}} for i in range(100)]
 
 # Distribute the function calls over the lambdas
 results = executor.map(my_power, payloads)

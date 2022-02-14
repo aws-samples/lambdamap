@@ -1,9 +1,20 @@
+#
+# USAGE:
+# 	make deploy MEMORY=512 TIMEOUT=30 EXTRA_CMDS='pip install pandas'
+#
 export SHELL
 SHELL:=/bin/bash
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 STACK_NAME:=LambdaMapStack
 FUNCTION_NAME:=LambdaMapFunction
+
+# memory in MB
+MEMORY:=256
+
+# timeout in seconds
+TIMEOUT:=900
+
 CDK_TAGS:=--tags Project=lambdamap
 
 # Use `EXTRA_CMDS` to run custom commands with the `RUN` instruction in
@@ -42,6 +53,8 @@ deploy: lambdamap_cdk/app.py .venv
 	cdk deploy -a 'python3 -B $<' \
 		-c stack_name=${STACK_NAME} \
 		-c function_name=${FUNCTION_NAME} \
-		-c extra_cmds='${EXTRA_CMDS}' \
+		-c memory_size=${MEMORY} \
+		-c timeout_secs=${TIMEOUT} \
+		-c extra_cmds=${EXTRA_CMDS} \
 		--require-approval never \
 		${CDK_TAGS}
