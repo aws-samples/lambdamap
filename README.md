@@ -35,11 +35,15 @@ Deploy the LambdaMap stack, you can configure the stack using the following
     - name of the lambdamap cloudformation stack
 - `FUNCTION_NAME` (default: `FUNCTION_NAME=LambdaMapFunction`)
     - name of the AWS Lambda function that will execute your python function
+- `MEMORY` (default: `MEMORY=256`)
+    - memory, in MB, to assign to the Lambda function
+- `TIMEOUT` (default: `TIMEOUT=900`)
+    - timeout, in seconds, to assign to the Lambda function
 - `EXTRA_CMDS` (default: `EXTRA_CMDS=''`)
     - e.g: `EXTRA_CMDS='pip install pandas'` 
     - additional commands to execute in a single `RUN` instruction of
       the `Dockerfile`, such as `pip install` for installing additional
-      python packages in the lambda container.
+      python packages in the Lambda container.
 - `CDK_TAGS` (default: `CDK_TAGS='--tags Project=lambdamap'`)
     - custom resource tags
 ```bash
