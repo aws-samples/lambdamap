@@ -26,7 +26,7 @@ CDK_TAGS:=--tags Project=lambdamap
 # 
 # which will make the `pandas` and `sklearn` python packages available to the
 # python function you want to run on lambdamap.
-EXTRA_CMDS:=
+EXTRA_CMDS:='pip install pandas'
 
 .PHONY: tests health
 
