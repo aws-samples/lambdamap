@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.4
+    hooks:
+      - id: bandit
+
+  - repo: https://github.com/bridgecrewio/checkov.git
+    rev: 2.0.995
+    hooks:
+    - id: checkov
+      verbose: true
+      args: [--soft-fail]

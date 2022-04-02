@@ -11,6 +11,7 @@ default:
     - pip install virtualenv
     - virtualenv venv
     - source venv/bin/activate
+    - pip install tox
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -24,22 +25,10 @@ workflow:
 stages:
   - test
 
-bandit:
+sast:
   stage: test
   inherit:
     default: true
     variables: true
-
   script:
-    - pip install bandit
-    - bandit --exclude ./venv/,./.cache/ -r .
-
-gitleaks:
-  stage: test
-  image: zricethezav/gitleaks:latest
-  inherit:
-    default: false
-    variables: false
-
-  script:
-    - gitleaks detect --redact --no-git --source .
+    - tox -e sast
