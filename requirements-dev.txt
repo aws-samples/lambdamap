@@ -1,3 +1,4 @@
+pre-commit
 bandit
 checkov
 -r requirements.txt
