@@ -1,0 +1,45 @@
+default:
+  image: python:3.9-buster
+
+  cache:
+    paths:
+      - .cache/pip
+      - venv/
+  
+  before_script:
+    - python --version  # For debugging
+    - pip install virtualenv
+    - virtualenv venv
+    - source venv/bin/activate
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - if: $CI_COMMIT_REF_PROTECTED
+
+stages:
+  - test
+
+bandit:
+  stage: test
+  inherit:
+    default: true
+    variables: true
+
+  script:
+    - pip install bandit
+    - bandit --exclude ./venv/,./.cache/ -r .
+
+gitleaks:
+  stage: test
+  image: zricethezav/gitleaks:latest
+  inherit:
+    default: false
+    variables: false
+
+  script:
+    - gitleaks detect --redact --no-git --source .
