@@ -35,15 +35,12 @@ EXTRA_CMDS:='pip install pandas'
 	source $@/bin/activate ; pip install -r $<
 
 tests: .venv
-	source $</bin/activate ; \
 	PYTHONPATH=.:lambdamap_cdk pytest -vs tests/
 
 health: .venv
-	source $</bin/activate ; \
 	PYTHONPATH=.:lambdamap_cdk python tests/bin/health.py
 
 bootstrap: .venv
-	source $</bin/activate ; \
 	export AWS_REGION=$$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]') ; \
 	export AWS_ACCOUNT_ID=$$(aws sts get-caller-identity --query Account --output text) ; \
 	cdk bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_REGION
