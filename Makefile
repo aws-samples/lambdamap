@@ -48,9 +48,7 @@ bootstrap: .venv
 	export AWS_ACCOUNT_ID=$$(aws sts get-caller-identity --query Account --output text) ; \
 	cdk bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_REGION
 
-deploy: lambdamap_cdk/app.py .venv
-	source $(word 2, $^)/bin/activate ; \
-	export PYTHONDONTWRITEBYTECODE=1 ; \
+deploy: lambdamap_cdk/app.py
 	cdk deploy -a 'python3 -B $<' \
 		-c stack_name=${STACK_NAME} \
 		-c function_name=${FUNCTION_NAME} \
