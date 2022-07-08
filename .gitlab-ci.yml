@@ -11,7 +11,7 @@ default:
     - pip install virtualenv
     - virtualenv venv
     - source venv/bin/activate
-    - pip install tox
+    - pip install -r requirements-dev.txt
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
@@ -20,7 +20,6 @@ workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
-    - if: $CI_COMMIT_REF_PROTECTED
 
 stages:
   - test
