@@ -7,6 +7,6 @@ boto3
 pytest
 cloudpickle==1.6.0
 tqdm
-pandas
+'pandas<2.0.0'
 black
 awscli
