@@ -1,0 +1,5 @@
+[tool.bandit]
+exclude_dirs = [".tox", ".venv"]
+
+[tool.bandit.assert_used]
+skips = ["tests/*"]

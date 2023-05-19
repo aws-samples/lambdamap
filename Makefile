@@ -26,7 +26,7 @@ CDK_TAGS:=--tags Project=lambdamap
 # 
 # which will make the `pandas` and `sklearn` python packages available to the
 # python function you want to run on lambdamap.
-EXTRA_CMDS:=
+EXTRA_CMDS:='pip install pandas'
 
 .PHONY: tests health
 
@@ -35,22 +35,17 @@ EXTRA_CMDS:=
 	source $@/bin/activate ; pip install -r $<
 
 tests: .venv
-	source $</bin/activate ; \
 	PYTHONPATH=.:lambdamap_cdk pytest -vs tests/
 
 health: .venv
-	source $</bin/activate ; \
 	PYTHONPATH=.:lambdamap_cdk python tests/bin/health.py
 
 bootstrap: .venv
-	source $</bin/activate ; \
 	export AWS_REGION=$$(aws ec2 describe-availability-zones --output text --query 'AvailabilityZones[0].[RegionName]') ; \
 	export AWS_ACCOUNT_ID=$$(aws sts get-caller-identity --query Account --output text) ; \
 	cdk bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_REGION
 
-deploy: lambdamap_cdk/app.py .venv
-	source $(word 2, $^)/bin/activate ; \
-	export PYTHONDONTWRITEBYTECODE=1 ; \
+deploy: lambdamap_cdk/app.py
 	cdk deploy -a 'python3 -B $<' \
 		-c stack_name=${STACK_NAME} \
 		-c function_name=${FUNCTION_NAME} \

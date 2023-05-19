@@ -1,0 +1,5 @@
+pre-commit
+tox
+bandit
+checkov
+-r requirements.txt
